@@ -1,0 +1,120 @@
+﻿<Window x:Class="Kurs_Project_BD.Teacher"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Kurs_Project_BD"
+        mc:Ignorable="d"
+        Title="Teacher" Height="700" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Menu Width="50" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Background="White">
+            <MenuItem Header="File">
+                <MenuItem Header="Сменить пароль" Click="ChangePassword_Click"></MenuItem>
+                <MenuItem Header="Выйти из аккаунта" Click="AuthReturn"></MenuItem>
+                <MenuItem Header="Выйти из приложения" Click="Form1_Close"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <TextBlock Grid.Row="0" Margin="50 20" TextAlignment="Center" VerticalAlignment="Center" FontSize="20" x:Name="ProfileTeacherText">Test Test</TextBlock>
+        <TabControl Grid.Row="1">
+            <TabItem Header="Список учеников">
+                <ListView x:Name="lvUsers" PreviewMouseLeftButtonUp="profile_Click" Grid.Row="1" Margin="20 10" ItemsSource="{DynamicResource ResourceKey=Profile}" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Фамилия" Width="100" DisplayMemberBinding="{Binding LastName}" />
+                            <GridViewColumn Header="Имя" Width="100" DisplayMemberBinding="{Binding FirstName}" />
+                            <GridViewColumn Header="Отчество" Width="100" DisplayMemberBinding="{Binding Patronymic}" />
+                            <GridViewColumn Header="Пасспортные данные" DisplayMemberBinding="{Binding Passport}" />
+                            <GridViewColumn Header="Логин" Width="100" DisplayMemberBinding="{Binding Login}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </TabItem>
+            <TabItem Header="Работа с тестами">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    
+                    <ListView x:Name="lvTests" PreviewMouseLeftButtonUp="profile_Click" Grid.Row="1" Margin="20 5" ItemsSource="{DynamicResource ResourceKey=Test}" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID теста" Width="100" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="Название теста" Width="100" DisplayMemberBinding="{Binding TestNaming}" />
+                                <GridViewColumn Header="Максимальное кол-во баллов" DisplayMemberBinding="{Binding MaxPoints}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                        <Button x:Name="btnAddUser" Content="Добавить тест" Margin="5" Click="btnAddTest_OnClick"/>
+                        <Button x:Name="btnEditUser" Content="Изменить тест" Margin="5" Click="btnEditTest_OnClick" />
+                        <Button x:Name="btnRemoveUser" Content="Удалить тест" Margin="5" Click="BtnRemoveTest_OnClick"/>
+                    </StackPanel>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Работа с результатами тестов">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    
+                    <ListView x:Name="lvResults" PreviewMouseLeftButtonUp="result_Click" Grid.Row="1" Margin="20 5" ItemsSource="{DynamicResource ResourceKey=Results}" >
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="ФИО" Width="300" DisplayMemberBinding="{Binding Fio}" />
+                                <GridViewColumn Header="Название теста" Width="200" DisplayMemberBinding="{Binding TestName}" />
+                                <GridViewColumn Header="Дата тестирования" DisplayMemberBinding="{Binding DateResult}" />
+                                <GridViewColumn Header="Количество баллов" DisplayMemberBinding="{Binding Points}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+                        <Button x:Name="btnAddUserResult" Content="Добавить результат" Margin="5" Click="BtnAddUserResult_OnClick"/>
+                        <Button x:Name="btnEditUserResult" Content="Изменить результат" Margin="5" Click="BtnEditUserResult_OnClick" />
+                        <Button x:Name="btnRemoveUserResult" Content="Удалить результат" Margin="5" Click="BtnRemoveUserResult_OnClick"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Построение отчета">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="50" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="10 10 10 10">
+                        <TextBlock Text="Тест" 
+                                   HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="20" Margin="0 20"></TextBlock>
+                        <TextBlock Text="Дата от" Margin="0 20"
+                                   HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="20"></TextBlock>
+                        <TextBlock  Text="Дата до" Margin="0 20"
+                                    HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="20"></TextBlock>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1">
+                        <ComboBox  VerticalAlignment="Center" x:Name="CbTestName" Margin="0 35"  Style="{DynamicResource ComboBoxStyle}"></ComboBox>
+                        <DatePicker VerticalAlignment="Center"  x:Name="DpDateStart" Height="25" Margin="0 8" ></DatePicker>
+                        <DatePicker  VerticalAlignment="Center"  x:Name="DpDateEnd" Height="25" Margin="0 35" ></DatePicker>
+                    </StackPanel>
+                               
+                    
+                    
+                    <Button Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2"
+                            Height="50" Width="200" HorizontalAlignment="Center" Margin="10 0 10 0" Content="Построить отчет" FontSize="20"
+                            Click="ButtonBase_OnClick"></Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

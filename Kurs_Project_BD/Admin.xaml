@@ -1,0 +1,43 @@
+﻿<Window x:Class="Kurs_Project_BD.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Kurs_Project_BD"
+        mc:Ignorable="d"
+        Title="Admin" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Menu Width="50" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Background="White">
+            <MenuItem Header="File">
+                <MenuItem Header="Сменить пароль" Click="ChangePassword_Click"></MenuItem>
+                <MenuItem Header="Выйти из аккаунта" Click="AuthReturn"></MenuItem>
+                <MenuItem Header="Выйти из приложения" Click="Form1_Close"></MenuItem>
+            </MenuItem>
+        </Menu>
+        
+        <TextBlock Grid.Row="0" Margin="50 20" TextAlignment="Center" VerticalAlignment="Center" FontSize="20" x:Name="ProfileAdminText">Test Test</TextBlock>
+        <ListView x:Name="lvUsers" PreviewMouseLeftButtonUp="profile_Click" Grid.Row="1" Margin="20 5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Фамилия" Width="100" DisplayMemberBinding="{Binding LastName}" />
+                    <GridViewColumn Header="Имя" Width="100" DisplayMemberBinding="{Binding FirstName}" />
+                    <GridViewColumn Header="Отчество" Width="100" DisplayMemberBinding="{Binding Patronymic}" />
+                    <GridViewColumn Header="Пасспортные данные" DisplayMemberBinding="{Binding Passport}" />
+                    <GridViewColumn Header="Логин" Width="100" DisplayMemberBinding="{Binding Login}" />
+                    <GridViewColumn Header="Пароль" Width="100" DisplayMemberBinding="{Binding Password}" />
+                    <GridViewColumn Header="Тип пользователя" Width="120" DisplayMemberBinding="{Binding TypeOfUser}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
+            <Button x:Name="btnAddUser" Content="Добавить пользователя" Margin="5" Click="btnAddUser_click"/>
+            <Button x:Name="btnEditUser" Content="Изменить пользователя" Margin="5" Click="btnEditUser_Click" />
+            <Button x:Name="btnRemoveUser" Content="Удалить пользователя" Margin="5" Click="BtnRemoveUser_OnClick"/>
+        </StackPanel>
+    </Grid>
+</Window>
