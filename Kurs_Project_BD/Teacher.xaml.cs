@@ -82,7 +82,7 @@ public partial class Teacher : Window
         lvTests.Items.Clear();
         var i = 0;
         _allTests.Clear();
-        _sqlQuery = $"SELECT * FROM tests";
+        _sqlQuery = $"SELECT * FROM tests ORDER BY id_test, name_test";
         var reader = MainFunctions.ConnectToDB(_sqlQuery, "SELECT").ExecuteReader();
             if (reader.HasRows)
             {
@@ -192,7 +192,7 @@ public partial class Teacher : Window
     {
         if (_selectedTest == -1)
         {
-            MessageBox.Show("Для изменения выберите профиль.");
+            MessageBox.Show("Для изменения выберите тест.");
             return;
         }
         string sqlQuery;
@@ -225,11 +225,17 @@ public partial class Teacher : Window
 
         MainFunctions.ConnectToDB(sqlQuery, "UPDATE");
         MessageBox.Show("Тест удалён");
+        _selectedTest = -1;
         UpdateTests(null,null);
     }
 
     private void BtnRemoveUserResult_OnClick(object sender, RoutedEventArgs e)
     {
+        if (_selectedResult == -1)
+        {
+            MessageBox.Show("Для удаления выберите результат.");
+            return;
+        }
         var result = MessageBox.Show(
             "Вы точно хотите удалить результат пользователя? ", 
             "Сообщение", 
@@ -239,9 +245,15 @@ public partial class Teacher : Window
             MessageBoxOptions.DefaultDesktopOnly);
         if (result == MessageBoxResult.No)
         {
+            MessageBox.Show("Результат не будет удален");
             return;
         }
-        
+        string sqlQuery;
+        sqlQuery = $"DELETE FROM results WHERE id_result = '{_allResults[_selectedResult].Id}'";
+        MainFunctions.ConnectToDB(sqlQuery, "UPDATE");
+        MessageBox.Show("Результат удалён");
+        _selectedTest = -1;
+        UpdateResults(null,null);
     }
 
     private void BtnEditUserResult_OnClick(object sender, RoutedEventArgs e)

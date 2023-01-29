@@ -43,13 +43,13 @@ public partial class EditTest : Window
             return false;
         }
         int maxPoints = -1;
+        
         if (!int.TryParse(TbMaxPoints.Text, out maxPoints))
         {
             MessageBox.Show("Баллы должны быть числом!",
                 "Ошибка",MessageBoxButton.OK,MessageBoxImage.Error);
             return false;
         }
-
         if (maxPoints <= 0)
         {
             MessageBox.Show("Баллы должны быть больше 0!",

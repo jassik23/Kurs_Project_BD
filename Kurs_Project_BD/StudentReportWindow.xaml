@@ -1,0 +1,35 @@
+﻿<Window x:Class="Kurs_Project_BD.StudentReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Kurs_Project_BD"
+        mc:Ignorable="d"
+        Title="Отчет по прохождению студента" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock 
+            HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" TextAlignment="Center" Margin="15" x:Name="nameOfReport">
+            123
+        </TextBlock>
+        <ListView Grid.Row="1" Grid.Column="0"  Margin="30 0 30 20"
+                  Name="Tests" ItemsSource="{DynamicResource ResourceKey=Report}" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path= Id}" Width="80">ID результата</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=NameOfTest}" Width="250">Название теста</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=DateTest}" Width="150">Дата тестирования</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Points}" Width="120">Кол-во баллов</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=MaxPoints}" Width="120">Макс. баллов</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>

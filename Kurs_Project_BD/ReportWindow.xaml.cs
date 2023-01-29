@@ -50,4 +50,9 @@ public partial class ReportWindow : Window
         this.MAXPoints.Text = MaxPoints.ToString();
         reader.Close();
     }
+
+    private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+    {
+        this.Close();
+    }
 }

@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Kurs_Project_BD"
         mc:Ignorable="d"
-        Title="Teacher" Height="700" Width="800">
+        Title="Панель учителя" Height="700" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="140" />
@@ -27,7 +27,7 @@
                             <GridViewColumn Header="Фамилия" Width="100" DisplayMemberBinding="{Binding LastName}" />
                             <GridViewColumn Header="Имя" Width="100" DisplayMemberBinding="{Binding FirstName}" />
                             <GridViewColumn Header="Отчество" Width="100" DisplayMemberBinding="{Binding Patronymic}" />
-                            <GridViewColumn Header="Пасспортные данные" DisplayMemberBinding="{Binding Passport}" />
+                            <GridViewColumn Header="Паспортные данные" DisplayMemberBinding="{Binding Passport}" />
                             <GridViewColumn Header="Логин" Width="100" DisplayMemberBinding="{Binding Login}" />
                         </GridView>
                     </ListView.View>

@@ -5,12 +5,12 @@ namespace Kurs_Project_BD;
 
 public abstract class MainFunctions
 {
-    private const string PatternLogin = "^[a-zA-Z][a-zA-Z0-9]{3,19}$";
+    
     private const string PatternPassword = "^[^а-яёА-ЯЁ]{8,50}$";
     private const string PatternPassport = "^[0-9]{2} [0-9]{2} [0-9]{6}$";
-    private const string PatternFio = "^[А-ЯЁ][а-яё]{3,}$";
+    private const string PatternFio = "^[А-ЯЁ][а-яё]{0,49}$";
     private const string PatternTestName = "^[^a-zA-Z]+$";
-
+    private const string PatternLogin = "^[a-zA-Z][a-zA-Z0-9]{3,19}$";
     public static bool IsValidLogin(string login) => new Regex(PatternLogin).IsMatch(login);
     public static bool IsValidPassword(string password) => new Regex(PatternPassword).IsMatch(password);
     public static bool IsValidPassport(string passport) => new Regex(PatternPassport).IsMatch(passport);

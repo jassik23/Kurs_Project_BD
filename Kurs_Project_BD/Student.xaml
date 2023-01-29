@@ -5,38 +5,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Kurs_Project_BD"
         mc:Ignorable="d"
-        Title="Student" Height="450" Width="800">
+        Title="Панель ученика" Height="300" Width="300">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="80"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-        </Grid.ColumnDefinitions>
+        
         <Menu Width="50" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Background="White">
             <MenuItem Header="File">
                 <MenuItem Header="Сменить пароль" Click="ChangePassword_Click"></MenuItem>
                 <MenuItem Header="Выйти из аккаунта" Click="AuthReturn"></MenuItem>
                 <MenuItem Header="Выйти из приложения" Click="Form1_Close"></MenuItem>
             </MenuItem>
+            
         </Menu>
-        <TextBlock 
-            HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" TextAlignment="Center" Margin="15" x:Name="nameOfReport">
-            123
-        </TextBlock>
-        <ListView Grid.Row="1" Grid.Column="0"  Margin="30 0 30 20"
-                  Name="Tests" ItemsSource="{DynamicResource ResourceKey=Report}" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path= Id}" Width="80">ID результата</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=NameOfTest}" Width="250">Название теста</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=DateTest}" Width="150">Дата тестирования</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Points}" Width="120">Кол-во баллов</GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=MaxPoints}" Width="120">Макс. баллов</GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Button Margin="30 30 30 30" Content="Построить отчет" FontSize="20" Click="ButtonBase_OnClick"></Button>
     </Grid>
 </Window>
